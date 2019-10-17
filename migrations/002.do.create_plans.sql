@@ -4,5 +4,5 @@ CREATE TABLE plans (
   from_date DATE NOT NULL,
   to_date DATE NOT NULL,
   notes TEXT NOT NULL,
-  trip INTEGER REFERENCES trips(id) ON DELETE CASCADE NOT NULL
+  trip_id INTEGER REFERENCES trips(id) ON DELETE CASCADE
 );

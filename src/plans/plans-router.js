@@ -12,7 +12,7 @@ const serializePlan = plan => ({
   from_date: plan.from_date,
   to_date: plan.to_date,
   notes: xss(plan.notes),
-  trip: plan.trip
+  trip_id: plan.trip_id
 })
 
 plansRouter
@@ -24,8 +24,8 @@ plansRouter
       .catch(next)
   })
   .post(jsonParser, (req, res, next) => {
-    const { location, from_date, to_date, notes, trip } = req.body
-    const newPlan = { location, from_date, to_date, notes, trip }
+    const { location, from_date, to_date, notes, trip_id } = req.body
+    const newPlan = { location, from_date, to_date, notes, trip_id }
     const db = req.app.get('db')
 
     if(!location) {
@@ -62,7 +62,7 @@ plansRouter
         if(!plan) {
           return res.status(404).json( {error: {message: `Trip plan doesn't exist`}} )
         }
-        res.note = note
+        res.plan = plan
         next()
       })
       .catch(next)
