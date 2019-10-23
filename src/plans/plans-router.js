@@ -81,8 +81,8 @@ plansRouter
       .catch(next)
   })
   .patch(jsonParser, (req, res, next) => {
-    const { location, from_date, to_date, notes, trip } = req.body;
-    const planToUpdate = { location, from_date, to_date, notes, trip }; // We are allowing notes to be moved into different folders
+    const { location, from_date, to_date, notes, trip_id } = req.body;
+    const planToUpdate = { location, from_date, to_date, notes, trip_id };
 
     const numberOfValues = Object.values(planToUpdate).filter(Boolean).length;
     if(numberOfValues === 0) {
