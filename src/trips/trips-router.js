@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const xss = require('xss');
+const { requireAuth } = require('../middleware/jwt');
 const TripsService = require('./trips-service');
 
 const tripsRouter = express.Router();
@@ -8,20 +9,21 @@ const jsonParser = express.json();
 
 const serializeTrip = trip => ({
   id: trip.id,
-  trip_title: xss(trip.trip_title)
+  trip_title: xss(trip.trip_title),
+  user_id: trip.user_id
 });
 
 tripsRouter
   .route('/')
-  .get((req, res, next) => {
+  .get(requireAuth, (req, res, next) => {
     const db = req.app.get('db')
-    TripsService.getAllTrips(db)
+    TripsService.getAllTrips(db, req.user.id)
       .then(trips => res.status(200).json(trips.map(serializeTrip)))
       .catch(next)
   })
-  .post(jsonParser, (req, res, next) => {
-    const { trip_title } = req.body
-    const newTrip = { trip_title }
+  .post(requireAuth, jsonParser, (req, res, next) => {
+    const { trip_title, user_id } = req.body
+    const newTrip = { trip_title, user_id }
     const db = req.app.get('db')
 
     if(!trip_title) {
@@ -60,22 +62,6 @@ tripsRouter
     const id = req.params.tripId
 
     TripsService.deleteTrip(db, id)
-      .then(() => {
-        res.status(204).end()
-      })
-      .catch(next)
-  })
-  .patch(jsonParser, (req, res, next) => {
-    const {trip_title} = req.body
-    const tripToUpdate = {trip_title}
-    const db = req.app.get('db')
-    const id = req.params.tripId
-
-    const numberOfValues = Object.values(TripToUpdate).filter(Boolean).length
-    if(numberOfValues === 0) {
-      return res.status(400).json({error: {message: 'Request body must include Trip title'}})
-    }
-    TripsService.updateTrip(db, id, tripToUpdate)
       .then(() => {
         res.status(204).end()
       })

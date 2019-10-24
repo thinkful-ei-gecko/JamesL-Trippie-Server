@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const xss = require('xss');
+const { requireAuth } = require('../middleware/jwt');
 const PlansService = require('./plans-service');
 
 const plansRouter = express.Router();
@@ -92,7 +93,7 @@ plansRouter
     const db = req.app.get('db')
     const id = req.params.planId
 
-    PlansService.updatePlan(db,id,planToUpdate)
+    PlansService.updatePlan(db, id, planToUpdate)
       .then(() => {
         res.status(204).end()
       })

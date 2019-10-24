@@ -1,8 +1,9 @@
 const TripsService = {
-  getAllTrips(db) {
+  getAllTrips(db, user_id) {
     return db
       .select('*')
-      .from('trips');
+      .from('trips')
+      .where({user_id})
   },
 
   getTripById(db, id) {
@@ -26,14 +27,8 @@ const TripsService = {
       .from('trips')
       .where({id})
       .delete();
-  },
-
-  updateTrip(db, id, newTripFields) {
-    return db
-      .from('trips')
-      .update(newTripFields)
-      .where({id});
   }
+  
 };
 
 module.exports = TripsService;
