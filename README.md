@@ -1,10 +1,10 @@
 # Trippie Planner
 
-##Project completed by James Lee
+## Project completed by James Lee
 
-##Live App: https://trippie-planner.now.sh
+## Live App: https://trippie-planner.now.sh
 
-##Demo Account => Username: demo, Password: Password1!
+## Demo Account => Username: demo, Password: Password1!
 
 ## Project Description:
 
@@ -16,11 +16,11 @@ Trippie Planner is an easy-to-use travel planner to keep track of all upcoming t
 
 <img width="800" alt="Trippie-Create-Plans" src="https://user-images.githubusercontent.com/52637953/71324230-f4959600-24a1-11ea-9468-29b4b1a3272a.png">
 
-###Full Stack Core Technologies: 
+### Full Stack Core Technologies: 
 **Front-end**: React, HTML5, CSS3 </br>
 **Back-end**: Node.js, PostGreSQL, RESTful API, Express.js, Knex
 
-#User Stories:
+# User Stories:
 
 ### As a user, I am able to...
 
