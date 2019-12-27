@@ -40,9 +40,9 @@ Trippie Planner is an easy-to-use travel planner to keep track of all upcoming t
 
 ### 8.) Log out of my account when I am finished using the app.
 
-##Endpoints
-| Method | Path | Function |
-| -- | -- | -- |
+## Endpoints
+| Method| Path | Function |
+| --| -- | -- |
 | POST | /api/users | User registration. Requires 'username', 'password', and 'fullname' |
 | POST | /api/auth/login | User login. Requires 'username', and 'password' |
 | GET | /api/trips | Retrieves trips associated to user |
