@@ -40,6 +40,19 @@ Trippie Planner is an easy-to-use travel planner to keep track of all upcoming t
 
 ### 8.) Log out of my account when I am finished using the app.
 
+##Endpoints
+| Method | Path | Function |
+| -- | -- | -- |
+| POST | /api/users | User registration. Requires 'username', 'password', and 'fullname' |
+| POST | /api/auth/login | User login. Requires 'username', and 'password' |
+| GET | /api/trips | Retrieves trips associated to user |
+| POST | /api/trips | Create a new trip. Requires 'trip_title' |
+| DELETE | /api/trips/:tripId | Deletes the specific trip and its associated plans |
+| GET | /api/plans | Retrieves all plans associated to user.  Each plan is associated with a trip_id |
+| POST | /api/plans | Create a new plan associated to user and specific trip. Requires 'location', 'from_date', 'to_date', and 'notes' |
+| PATCH | /api/plans/:planId | Edit fields on a specific plan |
+| DELETE | /api/plans/:planId | Deletes the specific plan with corresponding plan id|
+
 
 #
 |  Repository  |  Link  |
